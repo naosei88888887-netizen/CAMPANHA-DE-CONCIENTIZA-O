@@ -1,10 +1,17 @@
+export interface QuizQuestion {
+  question: string;
+  options: string[];
+  correctAnswerIndex: number;
+  explanation: string;
+}
+
 export interface CampaignDetails {
   symptoms: {
     title: string;
     items: string[];
   };
   stats: {
-    title: string;
+    title:string;
     items: {
       value: string;
       label: string;
@@ -24,6 +31,10 @@ export interface CampaignDetails {
       phone?: string;
     }[];
   };
+  quiz: {
+    title: string;
+    questions: QuizQuestion[];
+  }
 }
 
 

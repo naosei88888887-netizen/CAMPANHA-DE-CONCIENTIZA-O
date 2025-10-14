@@ -50,7 +50,7 @@ const Showcase: React.FC<ShowcaseProps> = ({ campaign, onClose, onNavigate }) =>
             <h2
               id={`showcase-title-${campaign.id}`}
               className={`text-3xl sm:text-4xl font-bold uppercase`}
-               style={{ color: campaign.colors.neon, textShadow: `0 0 10px ${campaign.colors.neonGlow}` }}
+               style={{ color: campaign.colors.neon, textShadow: `0 0 10px ${campaign.colors.neon}` }}
             >
               {campaign.title}
             </h2>
@@ -68,7 +68,7 @@ const Showcase: React.FC<ShowcaseProps> = ({ campaign, onClose, onNavigate }) =>
                 onClick={onNavigate}
                 className={`inline-block px-8 py-3 rounded-full text-gray-900 font-bold shadow-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 ${campaign.colors.accent} ${campaign.colors.accentHover} ${campaign.colors.ring}`}
                  style={{
-                    boxShadow: `0 0 15px ${campaign.colors.neonGlow}`
+                    boxShadow: `0 0 15px ${campaign.colors.neon}`
                  }}
               >
                 Ver Detalhes

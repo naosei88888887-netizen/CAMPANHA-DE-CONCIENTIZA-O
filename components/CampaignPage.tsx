@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Campaign } from '../types.ts';
+import QuizComponent from './QuizComponent.tsx';
 
 interface CampaignPageProps {
   campaign: Campaign;
@@ -47,6 +48,12 @@ const ShieldIcon = () => (
 const HelpIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
         <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+    </svg>
+);
+
+const QuizIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
 );
 
@@ -165,7 +172,7 @@ const CampaignPage: React.FC<CampaignPageProps> = ({ campaign, onBack }) => {
                 endValue={stat.value} 
                 isInView={currentIndex === 1}
                 className="h-14 text-4xl sm:text-5xl"
-                style={{color: accentColor, textShadow: `0 0 10px ${colors.neonGlow}`}}
+                style={{color: accentColor, textShadow: `0 0 8px ${accentColor}`}}
             />
             <h4 className="text-lg font-bold text-white/90 mt-2">{stat.label}</h4>
             <p className="text-sm text-white/60">{stat.description}</p>
@@ -203,6 +210,9 @@ const CampaignPage: React.FC<CampaignPageProps> = ({ campaign, onBack }) => {
         ))}
       </div>
     )},
+    { id: 'quiz', title: details.quiz.title, icon: <QuizIcon/>, content: (
+        <QuizComponent questions={details.quiz.questions} accentColor={accentColor} />
+    )},
   ];
 
   const goToPrevious = () => {
@@ -232,6 +242,22 @@ const CampaignPage: React.FC<CampaignPageProps> = ({ campaign, onBack }) => {
             .animate-fade-in-up {
                 animation: fade-in-up 0.6s ease-out forwards;
             }
+            .custom-scrollbar::-webkit-scrollbar {
+              width: 8px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background-color: ${accentColor};
+                border-radius: 10px;
+                border: 2px solid transparent;
+                background-clip: content-box;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                background-color: ${accentColor}99; /* 60% opacity */
+            }
           `}
       </style>
       <header className="w-full z-20 flex-shrink-0">
@@ -245,7 +271,7 @@ const CampaignPage: React.FC<CampaignPageProps> = ({ campaign, onBack }) => {
             <button
               onClick={onBack}
               className={`inline-flex items-center px-6 py-2 rounded-full font-bold shadow-md transition-all transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 ${colors.accent} ${colors.accentHover} ${colors.ring} text-gray-900`}
-              style={{boxShadow: `0 0 15px ${colors.neonGlow}`}}
+              style={{boxShadow: `0 0 12px ${colors.neon}`}}
             >
               <BackArrowIcon />
               Voltar
@@ -254,7 +280,7 @@ const CampaignPage: React.FC<CampaignPageProps> = ({ campaign, onBack }) => {
         </div>
       </header>
       
-        <main className="flex-grow flex items-center justify-center p-4 md:p-8 relative animate-fade-in-up">
+        <main className="flex-grow flex items-center justify-center p-4 md:p-8 relative animate-fade-in-up min-h-0">
             <button 
                 onClick={goToPrevious}
                 disabled={currentIndex === 0}
@@ -289,29 +315,31 @@ const CampaignPage: React.FC<CampaignPageProps> = ({ campaign, onBack }) => {
                                 transform,
                                 opacity,
                                 zIndex,
-                                boxShadow: isActive ? `0 0 30px ${accentColor}` : 'none',
+                                boxShadow: isActive ? `0 0 25px ${accentColor}BF` : 'none',
                             }}
                             aria-hidden={!isActive}
                         >
-                            <div className="w-full h-full p-6 sm:p-8 lg:p-12 overflow-y-auto flex flex-col justify-center">
-                                <section role="group" aria-labelledby={`slide-title-${slide.id}`}>
+                            <div className="w-full h-full p-6 sm:p-8 lg:p-12 flex flex-col">
+                                <section role="group" aria-labelledby={`slide-title-${slide.id}`} className="flex-shrink-0">
                                     <div className="flex items-center justify-center gap-4 mb-8" style={{color: accentColor}}>
                                         {slide.icon}
                                         <h3
                                             id={`slide-title-${slide.id}`}
-                                            // FIX: The ref callback function should not return a value. Using a block body ensures a void return.
-                                            ref={el => { slideTitleRefs.current[index] = el }}
+                                            ref={el => { slideTitleRefs.current[index] = el; }}
                                             tabIndex={-1}
-                                            className="text-3xl md:text-4xl font-bold focus:outline-none"
-                                            style={{textShadow: `0 0 15px ${colors.neonGlow}`}}
+                                            className="text-3xl md:text-4xl font-bold focus:outline-none text-center"
+                                            style={{textShadow: `0 0 12px ${accentColor}`}}
                                         >
                                             {slide.title}
                                         </h3>
                                     </div>
-                                    <div>
-                                       {slide.content}
-                                    </div>
                                 </section>
+                                
+                                <div className="flex-grow overflow-y-auto custom-scrollbar pr-4">
+                                    <div className="flex flex-col justify-center min-h-full">
+                                        {slide.content}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     );

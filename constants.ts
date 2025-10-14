@@ -77,6 +77,41 @@ export const CAMPAIGNS: Campaign[] = [
           },
         ],
       },
+      quiz: {
+        title: "Teste seus Conhecimentos",
+        questions: [
+          {
+            question: "O que representa a campanha Setembro Amarelo?",
+            options: ["Prevenção do câncer de próstata", "Prevenção ao suicídio", "Prevenção ao uso de drogas", "Prevenção ao tabagismo"],
+            correctAnswerIndex: 1,
+            explanation: "A campanha busca conscientizar sobre a prevenção ao suicídio, um tema de extrema importância para a saúde pública."
+          },
+          {
+            question: "Qual é o principal objetivo do Setembro Amarelo?",
+            options: ["Arrecadar doações", "Promover a saúde física", "Combater o preconceito racial", "Conscientizar sobre a importância da saúde mental"],
+            correctAnswerIndex: 3,
+            explanation: "O objetivo é quebrar o tabu sobre o suicídio, promovendo a conscientização sobre a saúde mental e informando que a prevenção é possível."
+          },
+          {
+            question: "Qual é o canal oficial de ajuda emocional no Brasil?",
+            options: ["180", "100", "188", "192"],
+            correctAnswerIndex: 2,
+            explanation: "O CVV (Centro de Valorização da Vida) oferece apoio emocional gratuito 24 horas por dia através do número 188."
+          },
+          {
+            question: "Qual destas frases melhor ajuda alguém em sofrimento emocional?",
+            options: ["“Você precisa ser mais forte.”", "“Já passou por isso antes, supere.”", "“Você quer conversar? Estou aqui para te ouvir.”", "“Tem gente em situação pior.”"],
+            correctAnswerIndex: 2,
+            explanation: "Oferecer escuta ativa, sem julgamentos, é uma das formas mais eficazes de apoiar alguém que está em sofrimento."
+          },
+          {
+            question: "Quais são sinais comuns de que alguém pode estar em sofrimento emocional?",
+            options: ["Isolamento, mudança de humor, desinteresse", "Felicidade repentina", "Aumento de produtividade", "Falar mais do que o normal"],
+            correctAnswerIndex: 0,
+            explanation: "Isolamento, mudanças de humor e desinteresse são sinais de alerta importantes que não devem ser ignorados."
+          }
+        ]
+      }
     },
   },
   {
@@ -84,9 +119,10 @@ export const CAMPAIGNS: Campaign[] = [
     title: 'Outubro Rosa',
     description: 'A conscientização sobre o câncer de mama é um ato de amor.',
     longDescription: 'Outubro Rosa é uma campanha anual realizada mundialmente em outubro, com a intenção de alertar a sociedade sobre o diagnóstico precoce do câncer de mama. A mobilização visa também à disseminação de dados preventivos e ressalta a importância de olhar com atenção para a saúde, além de lutar por direitos como o atendimento médico e o suporte emocional, garantindo um tratamento de qualidade.',
-    image: 'https://i.imgur.com/mAIQdyG.png',
+    image: 'https://i.imgur.com/8BuU3ey.jpeg',
     logo: 'https://i.imgur.com/Rjch5Y3.png',
-    objectPosition: 'object-left',
+    objectPosition: 'object-right',
+    textPosition: 'center',
     colors: {
       bg: 'from-gray-900 via-gray-900 to-pink-900/20',
       text: 'text-pink-200',
@@ -153,6 +189,41 @@ export const CAMPAIGNS: Campaign[] = [
           },
         ],
       },
+      quiz: {
+        title: "Teste seus Conhecimentos",
+        questions: [
+          {
+            question: "O que simboliza a campanha Outubro Rosa?",
+            options: ["Saúde dos olhos", "Câncer de próstata", "Prevenção ao câncer de mama", "Combate ao sedentarismo"],
+            correctAnswerIndex: 2,
+            explanation: "Outubro Rosa é mundialmente conhecido por alertar sobre a importância da prevenção e do diagnóstico precoce do câncer de mama."
+          },
+          {
+            question: "Qual é a principal forma de detecção precoce do câncer de mama?",
+            options: ["Teste de sangue", "Mamografia", "Ultrassom abdominal", "Ressonância magnética"],
+            correctAnswerIndex: 1,
+            explanation: "A mamografia é o exame mais eficaz para detectar o câncer de mama em estágio inicial, antes mesmo do surgimento de sintomas."
+          },
+          {
+            question: "Com que idade é recomendada a realização da mamografia no Brasil para mulheres sem fatores de risco?",
+            options: ["A partir dos 20 anos", "A partir dos 35 anos", "A partir dos 40 anos", "A partir dos 50 anos"],
+            correctAnswerIndex: 3,
+            explanation: "No Brasil, a recomendação do Ministério da Saúde é que mulheres entre 50 e 69 anos façam mamografia a cada dois anos."
+          },
+          {
+            question: "Qual das opções abaixo não é considerada um fator de risco para o câncer de mama?",
+            options: ["Histórico familiar", "Sedentarismo", "Obesidade", "Beber bastante água"],
+            correctAnswerIndex: 3,
+            explanation: "Manter-se hidratado é saudável, mas não é um fator de risco ou prevenção direta do câncer de mama. Histórico familiar, sedentarismo e obesidade são fatores de risco conhecidos."
+          },
+          {
+            question: "O autoexame das mamas é suficiente para diagnosticar o câncer?",
+            options: ["Sim", "Não", "Depende da idade", "Só em casos avançados"],
+            correctAnswerIndex: 1,
+            explanation: "Não. O autoexame ajuda a mulher a conhecer seu corpo e identificar alterações, mas não substitui exames médicos como a mamografia para um diagnóstico preciso."
+          }
+        ]
+      }
     },
   },
   {
@@ -160,9 +231,10 @@ export const CAMPAIGNS: Campaign[] = [
     title: 'Novembro Azul',
     description: 'Cuidar da saúde também é coisa de homem.',
     longDescription: 'Novembro Azul é um movimento mundial que acontece durante o mês de novembro para reforçar a importância da prevenção e do diagnóstico precoce do câncer de próstata. A doença é o segundo tipo de câncer mais comum entre os homens brasileiros e as maiores vítimas são homens a partir dos 50 anos, além de pessoas com presença da doença em parentes de primeiro grau, como pai, irmão ou filho.',
-    image: 'https://i.imgur.com/TOcxcTu.jpeg',
+    image: 'https://i.imgur.com/qzVHeKI.jpeg',
     logo: 'https://i.imgur.com/XuVzMm4.png',
-    objectPosition: 'object-center',
+    objectPosition: 'object-left',
+    textPosition: 'center',
     colors: {
       bg: 'from-gray-900 via-gray-900 to-blue-900/20',
       text: 'text-blue-200',
@@ -228,6 +300,41 @@ export const CAMPAIGNS: Campaign[] = [
           },
         ],
       },
+      quiz: {
+        title: "Teste seus Conhecimentos",
+        questions: [
+          {
+            question: "Qual é o objetivo principal da campanha Novembro Azul?",
+            options: ["Conscientizar sobre diabetes", "Combater o câncer de próstata", "Incentivar a vacinação", "Reduzir o estresse no trabalho"],
+            correctAnswerIndex: 1,
+            explanation: "A campanha Novembro Azul foca na conscientização sobre o câncer de próstata e a importância da saúde integral do homem."
+          },
+          {
+            question: "Qual é o exame mais comum para detectar precocemente o câncer de próstata?",
+            options: ["Colonoscopia", "Exame de urina", "Toque retal e PSA", "Ressonância magnética"],
+            correctAnswerIndex: 2,
+            explanation: "O diagnóstico precoce combina o exame de toque retal, que avalia a glândula, e o exame de sangue PSA (Antígeno Prostático Específico)."
+          },
+          {
+            question: "Com que idade os homens devem começar a se preocupar com a prevenção ao câncer de próstata (sem fatores de risco)?",
+            options: ["30 anos", "40 anos", "45 anos", "50 anos"],
+            correctAnswerIndex: 3,
+            explanation: "A recomendação geral é que homens a partir dos 50 anos (ou 45, com fatores de risco) procurem um urologista anualmente."
+          },
+          {
+            question: "O câncer de próstata tem sintomas logo no início?",
+            options: ["Sim, sempre", "Não, geralmente é silencioso", "Apenas se for grave", "Só quando há dor"],
+            correctAnswerIndex: 1,
+            explanation: "Em sua fase inicial, o câncer de próstata geralmente não apresenta sintomas. Por isso, os exames preventivos são fundamentais."
+          },
+          {
+            question: "Qual dessas atitudes ajuda na prevenção do câncer de próstata?",
+            options: ["Evitar exames médicos", "Ter uma alimentação saudável e fazer atividade física", "Tomar suplementos sem prescrição", "Usar roupas apertadas"],
+            correctAnswerIndex: 1,
+            explanation: "Adotar um estilo de vida saudável, com boa alimentação e atividade física, é uma das principais formas de prevenir diversos tipos de câncer, incluindo o de próstata."
+          }
+        ]
+      }
     },
   },
 ];

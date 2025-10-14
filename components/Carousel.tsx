@@ -35,21 +35,21 @@ const Carousel: React.FC<CarouselProps> = ({ campaigns, activeIndex, setActiveIn
             color: #fff;
             font-weight: 900;
             text-shadow:
-                0 0 5px var(--neon-color-glow),
-                0 0 15px var(--neon-color-glow),
+                0 0 5px var(--neon-color),
+                0 0 15px var(--neon-color),
                 0 0 30px var(--neon-color);
           }
            .neon-text-subtle {
             color: #e5e7eb; /* a bit off-white */
-            text-shadow: 0 0 8px var(--neon-color-glow);
+            text-shadow: 0 0 8px var(--neon-color);
           }
           .neon-button {
               background-color: transparent;
               border: 2px solid var(--neon-color);
-              color: var(--neon-color-glow);
-              text-shadow: 0 0 5px var(--neon-color-glow);
-              box-shadow: 0 0 10px var(--neon-color-glow),
-                          inset 0 0 10px var(--neon-color-glow);
+              color: var(--neon-color);
+              text-shadow: 0 0 8px var(--neon-color);
+              box-shadow: 0 0 10px var(--neon-color),
+                          inset 0 0 10px var(--neon-color);
               transition: color 0.3s, background-color 0.3s, box-shadow 0.3s, text-shadow 0.3s;
           }
           .neon-button:hover {
@@ -65,7 +65,7 @@ const Carousel: React.FC<CarouselProps> = ({ campaigns, activeIndex, setActiveIn
           }
           .animate-progress {
             animation: progress linear forwards;
-            box-shadow: 0 0 10px ${activeCampaign.colors.neon}, 0 0 5px ${activeCampaign.colors.neonGlow};
+            box-shadow: 0 0 10px ${activeCampaign.colors.neon};
           }
         `}
       </style>
@@ -73,7 +73,6 @@ const Carousel: React.FC<CarouselProps> = ({ campaigns, activeIndex, setActiveIn
       {/* Content */}
       <div className="relative z-10 text-white px-4 w-full h-full" style={{
             '--neon-color': activeCampaign.colors.neon,
-            '--neon-color-glow': activeCampaign.colors.neonGlow,
           } as React.CSSProperties}>
          <div className="relative w-full h-full">
             {campaigns.map((campaign, index) => {
