@@ -1,13 +1,6 @@
 import React from 'react';
-import { Campaign } from '../types.ts';
 
-interface ShowcaseProps {
-  campaign: Campaign;
-  onClose: () => void;
-  onNavigate: () => void;
-}
-
-const Showcase: React.FC<ShowcaseProps> = ({ campaign, onClose, onNavigate }) => {
+const Showcase = ({ campaign, onClose, onNavigate }) => {
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in"

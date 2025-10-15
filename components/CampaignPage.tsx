@@ -1,11 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Campaign } from '../types.ts';
-import QuizComponent from './QuizComponent.tsx';
-
-interface CampaignPageProps {
-  campaign: Campaign;
-  onBack: () => void;
-}
+import QuizComponent from './QuizComponent.js';
 
 // --- ICON COMPONENTS ---
 const BackArrowIcon = () => (
@@ -58,13 +52,13 @@ const QuizIcon = () => (
 );
 
 // --- Sub-item Icons ---
-const ChevronDoubleRightIcon = ({color}: {color: string}) => (
+const ChevronDoubleRightIcon = ({color}) => (
   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke={color} strokeWidth={2}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
   </svg>
 );
 
-const CheckCircleIcon = ({color}: {color: string}) => (
+const CheckCircleIcon = ({color}) => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke={color} strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
@@ -82,20 +76,7 @@ const PhoneIcon = () => (
     </svg>
 );
 
-// --- Counting Number Component (Slot Machine Style) ---
-interface CountingNumberProps {
-  endValue: string;
-  isInView: boolean;
-  className?: string;
-  style?: React.CSSProperties;
-}
-
-interface DigitScrollerProps {
-    char: string;
-    isInView: boolean;
-}
-
-const DigitScroller: React.FC<DigitScrollerProps> = ({ char, isInView }) => {
+const DigitScroller = ({ char, isInView }) => {
     const isDigit = /\d/.test(char);
   
     if (!isDigit) {
@@ -121,7 +102,7 @@ const DigitScroller: React.FC<DigitScrollerProps> = ({ char, isInView }) => {
     );
 };
 
-const CountingNumber: React.FC<CountingNumberProps> = ({ endValue, isInView, className, style }) => {
+const CountingNumber = ({ endValue, isInView, className, style }) => {
     const match = endValue.match(/^(\D*)?([\d,.\s]+)(\D*)?$/);
 
     if (!match) {
@@ -147,11 +128,11 @@ const CountingNumber: React.FC<CountingNumberProps> = ({ endValue, isInView, cla
 
 
 // --- MAIN PAGE COMPONENT ---
-const CampaignPage: React.FC<CampaignPageProps> = ({ campaign, onBack }) => {
+const CampaignPage = ({ campaign, onBack }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { details, colors } = campaign;
   const accentColor = colors.neon;
-  const slideTitleRefs = useRef<(HTMLHeadingElement | null)[]>([]);
+  const slideTitleRefs = useRef([]);
 
   const slides = [
     { id: 'symptoms', title: details.symptoms.title, icon: <AlertIcon/>, content: (

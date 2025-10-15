@@ -29,9 +29,9 @@
   <body class="bg-gray-900">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!-- Adicionado o Babel para traduzir JSX/TSX no navegador -->
+    <!-- Adicionado o Babel para traduzir JSX no navegador -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <!-- O script principal foi atualizado para ser um módulo e usar um caminho relativo, permitindo que as importações de arquivos locais funcionem no navegador -->
-    <script type="text/babel" data-type="module" data-presets="react,typescript" src="index.tsx"></script>
+    <!-- O script principal foi atualizado para .js e o preset de typescript removido -->
+    <script type="text/babel" data-type="module" data-presets="react" src="index.js"></script>
   </body>
 </html>

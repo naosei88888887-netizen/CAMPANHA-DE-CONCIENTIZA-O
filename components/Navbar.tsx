@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
-import { Campaign } from '../types.ts';
 
-interface NavbarProps {
-  campaigns: Campaign[];
-  activeIndex: number;
-  setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ campaigns, activeIndex, setActiveIndex }) => {
+const Navbar = ({ campaigns, activeIndex, setActiveIndex }) => {
   const [isOpen, setIsOpen] = useState(false);
   const activeCampaign = campaigns[activeIndex];
 

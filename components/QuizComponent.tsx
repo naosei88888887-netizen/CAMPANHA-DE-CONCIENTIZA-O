@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { QuizQuestion } from '../types.ts';
 
 // --- Icon Components ---
 
-const CheckIcon = ({color}: {color:string}) => (
+const CheckIcon = ({color}) => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 animate-check-in" fill="none" viewBox="0 0 24 24" stroke={color} strokeWidth={3}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
@@ -21,17 +20,11 @@ const XCircleSolidIcon = () => (
     </svg>
 );
 
-
-interface QuizComponentProps {
-  questions: QuizQuestion[];
-  accentColor: string;
-}
-
-const QuizComponent: React.FC<QuizComponentProps> = ({ questions, accentColor }) => {
-  const [selectedAnswers, setSelectedAnswers] = useState<(number | null)[]>(Array(questions.length).fill(null));
+const QuizComponent = ({ questions, accentColor }) => {
+  const [selectedAnswers, setSelectedAnswers] = useState(Array(questions.length).fill(null));
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSelectAnswer = (questionIndex: number, optionIndex: number) => {
+  const handleSelectAnswer = (questionIndex, optionIndex) => {
     if (submitted) return;
     const newAnswers = [...selectedAnswers];
     newAnswers[questionIndex] = optionIndex;

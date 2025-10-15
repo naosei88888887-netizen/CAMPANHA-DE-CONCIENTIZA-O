@@ -1,16 +1,8 @@
 import React, { useEffect } from 'react';
-import { Campaign } from '../types.ts';
-import { AUTOPLAY_INTERVAL } from '../constants.ts';
-import TypingEffect from './TypingEffect.tsx';
+import { AUTOPLAY_INTERVAL } from '../constants.js';
+import TypingEffect from './TypingEffect.js';
 
-interface CarouselProps {
-  campaigns: Campaign[];
-  activeIndex: number;
-  setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
-  onShowcaseSelect: (campaign: Campaign) => void;
-}
-
-const Carousel: React.FC<CarouselProps> = ({ campaigns, activeIndex, setActiveIndex, onShowcaseSelect }) => {
+const Carousel = ({ campaigns, activeIndex, setActiveIndex, onShowcaseSelect }) => {
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -20,7 +12,7 @@ const Carousel: React.FC<CarouselProps> = ({ campaigns, activeIndex, setActiveIn
     return () => clearInterval(timer);
   }, [campaigns.length, setActiveIndex]);
 
-  const handleShowcaseOpen = (e: React.MouseEvent<HTMLButtonElement>, campaign: Campaign) => {
+  const handleShowcaseOpen = (e, campaign) => {
     e.preventDefault();
     onShowcaseSelect(campaign);
   };
@@ -71,6 +63,7 @@ const Carousel: React.FC<CarouselProps> = ({ campaigns, activeIndex, setActiveIn
       </style>
       
       {/* Content */}
+      {/* FIX: Cast style object to React.CSSProperties to allow custom CSS properties. */}
       <div className="relative z-10 text-white px-4 w-full h-full" style={{
             '--neon-color': activeCampaign.colors.neon,
           } as React.CSSProperties}>
@@ -90,7 +83,7 @@ const Carousel: React.FC<CarouselProps> = ({ campaigns, activeIndex, setActiveIn
                   style={{
                     backgroundImage: 'radial-gradient(ellipse at center, var(--neon-color) 0%, transparent 70%)',
                     opacity: 0.3
-                  }}
+                  } as React.CSSProperties}
                 />
 
                 <h1 className={`text-5xl sm:text-6xl lg:text-8xl drop-shadow-lg transition-transform duration-700 ease-out uppercase neon-text-main ${

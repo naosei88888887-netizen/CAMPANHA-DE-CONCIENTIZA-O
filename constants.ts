@@ -1,6 +1,4 @@
-import { Campaign } from './types.ts';
-
-export const CAMPAIGNS: Campaign[] = [
+export const CAMPAIGNS = [
   {
     id: 'setembro-amarelo',
     title: 'Setembro Amarelo',

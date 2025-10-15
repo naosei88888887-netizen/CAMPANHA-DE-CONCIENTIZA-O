@@ -1,17 +1,39 @@
 import React, { useEffect, useRef } from 'react';
-import { Campaign } from '../types.ts';
 
-interface BackgroundEffectsProps {
-  activeCampaign: Campaign;
+// A classe Particle foi convertida para uma função construtora de JS puro
+function Particle(canvas) {
+  this.canvas = canvas;
+  this.x = Math.random() * this.canvas.width;
+  this.y = Math.random() * this.canvas.height;
+  this.size = Math.random() * 2 + 1;
+  this.speedX = Math.random() * 0.4 - 0.2;
+  this.speedY = Math.random() * 0.4 - 0.2;
+
+  this.update = function() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    if (this.size > 0.1) this.size -= 0.01;
+    
+    if (this.x < 0 || this.x > this.canvas.width) this.speedX *= -1;
+    if (this.y < 0 || this.y > this.canvas.height) this.speedY *= -1;
+  };
+
+  this.draw = function(ctx, color) {
+    ctx.fillStyle = `rgba(${color}, ${this.size / 3})`;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  };
 }
 
-const BackgroundEffects: React.FC<BackgroundEffectsProps> = ({ activeCampaign }) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const particlesRef = useRef<Particle[]>([]);
-  const animationFrameIdRef = useRef<number | null>(null);
+const BackgroundEffects = ({ activeCampaign }) => {
+  const canvasRef = useRef(null);
+  const particlesRef = useRef([]);
+  const animationFrameIdRef = useRef(null);
 
   // Utility to convert hex to rgb
-  const hexToRgb = (hex: string) => {
+  const hexToRgb = (hex) => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result
       ? {
@@ -21,41 +43,6 @@ const BackgroundEffects: React.FC<BackgroundEffectsProps> = ({ activeCampaign })
         }
       : null;
   };
-
-  class Particle {
-    x: number;
-    y: number;
-    size: number;
-    speedX: number;
-    speedY: number;
-    canvas: HTMLCanvasElement;
-    
-    constructor(canvas: HTMLCanvasElement) {
-      this.canvas = canvas;
-      this.x = Math.random() * this.canvas.width;
-      this.y = Math.random() * this.canvas.height;
-      this.size = Math.random() * 2 + 1;
-      this.speedX = Math.random() * 0.4 - 0.2;
-      this.speedY = Math.random() * 0.4 - 0.2;
-    }
-
-    update() {
-      this.x += this.speedX;
-      this.y += this.speedY;
-
-      if (this.size > 0.1) this.size -= 0.01;
-      
-      if (this.x < 0 || this.x > this.canvas.width) this.speedX *= -1;
-      if (this.y < 0 || this.y > this.canvas.height) this.speedY *= -1;
-    }
-
-    draw(ctx: CanvasRenderingContext2D, color: string) {
-        ctx.fillStyle = `rgba(${color}, ${this.size / 3})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
-  }
 
   useEffect(() => {
     const canvas = canvasRef.current;

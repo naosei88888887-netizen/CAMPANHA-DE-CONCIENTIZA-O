@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import Navbar from './components/Navbar.tsx';
-import Carousel from './components/Carousel.tsx';
-import Showcase from './components/Showcase.tsx';
-import CampaignPage from './components/CampaignPage.tsx';
-import { CAMPAIGNS } from './constants.ts';
-import { Campaign } from './types.ts';
-import BackgroundEffects from './components/BackgroundEffects.tsx';
+import Navbar from './components/Navbar.js';
+import Carousel from './components/Carousel.js';
+import Showcase from './components/Showcase.js';
+import CampaignPage from './components/CampaignPage.js';
+import { CAMPAIGNS } from './constants.js';
+import BackgroundEffects from './components/BackgroundEffects.js';
 
 function App() {
-  const [carouselIndex, setCarouselIndex] = useState<number>(0);
-  const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
-  const [viewingCampaign, setViewingCampaign] = useState<Campaign | null>(null);
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const [selectedCampaign, setSelectedCampaign] = useState(null);
+  const [viewingCampaign, setViewingCampaign] = useState(null);
   const activeCampaign = CAMPAIGNS[carouselIndex];
   
-  const handleNavigateToPage = (campaign: Campaign) => {
+  const handleNavigateToPage = (campaign) => {
     setSelectedCampaign(null);
     setViewingCampaign(campaign);
   };
